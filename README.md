@@ -4,11 +4,17 @@ Paste two phrases. If their letters and numbers match, Anagramator shows how eac
 
 [Open Anagramator](https://okturan.github.io/anagramator/)
 
-[![Anagramator showing a 103-letter phrase rearranged into its matching target](assets/anagramator-poster.png)](https://okturan.github.io/anagramator/)
+The live page is an editor with separate panels for text, motion, appearance, export settings, and the animation preview.
 
-The example above matches 103 letters while ignoring spaces, punctuation, and case. [Watch the eight-second MP4](assets/anagramator-demo.mp4), or see the lighter inline preview below.
+## Generated output
 
-![The letters in a long phrase moving into their matching target positions](assets/anagramator-preview.gif)
+The media below comes from the repository's standalone video renderer. It demonstrates the same 103-letter transformation, but it is not a screenshot or recording of the editor interface.
+
+[![Final frame from the standalone 103-letter anagram demo](assets/anagramator-poster.png)](assets/anagramator-demo.mp4)
+
+[Watch the eight-second, 1920×1080 MP4](assets/anagramator-demo.mp4), or see the smaller inline preview:
+
+![Standalone demo of a long phrase rearranging into its matching target](assets/anagramator-preview.gif)
 
 ## What it does
 
