@@ -4,7 +4,9 @@ Paste two phrases. If their letters and numbers match, Anagramator shows how eac
 
 [Open Anagramator](https://okturan.github.io/anagramator/)
 
-The live page is an editor with separate panels for text, motion, appearance, export settings, and the animation preview.
+[![Anagramator editor with text, motion, appearance, export, and live-preview panels](assets/anagramator-editor.png)](https://okturan.github.io/anagramator/)
+
+This is the actual editor, captured from `index.html` at 1440×720. [Watch the eight-second, 1920×1080 demo video](assets/anagramator-demo.mp4) to see the rendered 103-letter transformation without the editor controls.
 
 ## What it does
 
