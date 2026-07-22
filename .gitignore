@@ -1,4 +1,6 @@
 .DS_Store
+__pycache__/
 .wrangler/
 render_frames
 anagram_rearrangement.ass
+assets/*.mp4
