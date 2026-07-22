@@ -6,7 +6,9 @@ Paste two phrases. If their letters and numbers match, Anagramator shows how eac
 
 [![Anagramator editor with text, motion, appearance, export, and live-preview panels](assets/anagramator-editor.png)](https://okturan.github.io/anagramator/)
 
-This is the actual editor, captured from `index.html` at 1440×720. [Watch the eight-second, 1920×1080 demo video](assets/anagramator-demo.mp4) to see the rendered 103-letter transformation without the editor controls.
+This is the actual editor, captured from `index.html` at 1440×720. The GIF below shows the rendered 103-letter transformation without the editor controls.
+
+![A 103-letter phrase rearranging into its perfect anagram](assets/anagramator-demo.gif)
 
 ## What it does
 
@@ -34,9 +36,9 @@ node test.mjs
 
 The default Classic Mono font works offline. The other five font choices are loaded from Google Fonts and need a network connection. Large, high-frame-rate GIF exports can take a while because every frame is rendered and encoded in the browser.
 
-## Rebuild the demo video
+## Rebuild the demo GIF
 
-The checked-in MP4 is generated from `anagram.json` at 1920×1080, 30 FPS, and eight seconds long. On macOS with Swift and FFmpeg installed:
+The checked-in GIF is generated from `anagram.json` at 1200×676 from a 15 FPS input, and is eight seconds long. It uses gifski's cross-frame palettes and temporal dithering at quality 95. On macOS with Swift, FFmpeg, and gifski installed:
 
 ```sh
 python3 render_anagram.py

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render a letter-by-letter anagram transformation as an ASS/FFmpeg video."""
+"""Render a high-quality looping GIF with Swift, FFmpeg, and gifski."""
 
 from __future__ import annotations
 
@@ -13,10 +13,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "anagram.json"
 ASS = ROOT / "anagram_rearrangement.ass"
-OUTPUT = ROOT / "assets" / "anagramator-demo.mp4"
+OUTPUT = ROOT / "assets" / "anagramator-demo.gif"
 
 WIDTH, HEIGHT = 1920, 1080
 FPS, DURATION = 30, 8
+GIF_WIDTH, GIF_FPS = 1200, 15
 FONT_NAME = "Menlo"
 FONT_SIZE = 42
 CHAR_W, LINE_H = 25.3, 68
@@ -171,17 +172,32 @@ def main() -> None:
     )
     producer = subprocess.Popen([str(renderer)], cwd=ROOT, stdout=subprocess.PIPE)
     assert producer.stdout is not None
-    command = [
-        "ffmpeg", "-y",
-        "-f", "rawvideo", "-pixel_format", "argb",
-        "-video_size", f"{WIDTH}x{HEIGHT}", "-framerate", str(FPS),
-        "-i", "pipe:0",
-        "-c:v", "libx264", "-preset", "medium", "-crf", "16",
-        "-pix_fmt", "yuv420p", "-movflags", "+faststart",
-        "-an", str(OUTPUT),
-    ]
-    subprocess.run(command, cwd=ROOT, stdin=producer.stdout, check=True)
+    ffmpeg = subprocess.Popen(
+        [
+            "ffmpeg", "-v", "error",
+            "-f", "rawvideo", "-pixel_format", "argb",
+            "-video_size", f"{WIDTH}x{HEIGHT}", "-framerate", str(FPS),
+            "-i", "pipe:0",
+            "-vf", f"fps={GIF_FPS},scale={GIF_WIDTH}:-2:flags=lanczos",
+            "-pix_fmt", "yuv444p",
+            "-f", "yuv4mpegpipe", "pipe:1",
+        ],
+        cwd=ROOT, stdin=producer.stdout, stdout=subprocess.PIPE,
+    )
     producer.stdout.close()
+    assert ffmpeg.stdout is not None
+    subprocess.run(
+        [
+            "gifski", "--quiet", "--extra",
+            "--fps", str(GIF_FPS), "--width", str(GIF_WIDTH),
+            "--quality", "95", "--motion-quality", "95", "--lossy-quality", "95",
+            "--repeat", "0", "--output", str(OUTPUT), "-",
+        ],
+        cwd=ROOT, stdin=ffmpeg.stdout, check=True,
+    )
+    ffmpeg.stdout.close()
+    if ffmpeg.wait() != 0:
+        raise SystemExit("FFmpeg conversion failed")
     if producer.wait() != 0:
         raise SystemExit("Frame renderer failed")
     print(f"Verified: {len(a)} letters on each side; counts are identical.")
