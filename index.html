@@ -551,6 +551,7 @@ $('modeToggle').addEventListener('click',()=>{
 });
 
 window.analyzeForTest=analyze;window.currentSVGForTest=()=>state.model?.hasLetters?buildSVG(state.model).svg:'';window.exportGIFForTest=exportGIF;
+window.setAnimationPhaseForCapture=phase=>{state.paused=true;anim.phase=((Number(phase)||0)%state.dur+state.dur)%state.dur;renderFrame();return{phase:anim.phase,duration:state.dur,ready:!!stage.querySelector('svg')}};
 initThemes();applyTheme('midnight');
 })();
 </script>

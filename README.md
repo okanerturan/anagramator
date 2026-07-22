@@ -6,9 +6,9 @@ Paste two phrases. If their letters and numbers match, Anagramator shows how eac
 
 [![Anagramator editor with text, motion, appearance, export, and live-preview panels](assets/anagramator-editor.png)](https://okturan.github.io/anagramator/)
 
-This is the actual editor, captured from `index.html` at 1440×720. The GIF below shows the rendered 103-letter transformation without the editor controls.
+This is the actual editor, captured from `index.html` at 1440×720. The GIF below records the same interface while its live preview animates.
 
-![A 103-letter phrase rearranging into its perfect anagram](assets/anagramator-demo.gif)
+![The Anagramator editor with its listen-to-silent preview animating](assets/anagramator-demo.gif)
 
 ## What it does
 
@@ -38,10 +38,10 @@ The default Classic Mono font works offline. The other five font choices are loa
 
 ## Rebuild the demo GIF
 
-The checked-in GIF is generated from `anagram.json` at 1200×676 from a 15 FPS input, and is eight seconds long. It uses gifski's cross-frame palettes and temporal dithering at quality 95. On macOS with Swift, FFmpeg, and gifski installed:
+The checked-in GIF records the actual `index.html` editor at 1200×600 from a 15 FPS browser capture. It uses gifski's cross-frame palettes and temporal dithering at quality 95. On macOS with Google Chrome and gifski installed:
 
 ```sh
-python3 render_anagram.py
+node render_editor_gif.mjs
 ```
 
 `render_svg_gif.mjs` is a separate helper for turning an exported animated SVG into a GIF. It expects Google Chrome and FFmpeg.
