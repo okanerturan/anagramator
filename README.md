@@ -2,9 +2,9 @@
 
 Paste two phrases. If their letters and numbers match, Anagramator shows how each character moves from one phrase to the other. The comparison and animation run in the browser, so the text never leaves the page.
 
-[Open Anagramator](https://okturan.github.io/anagramator/)
+[Open Anagramator](https://okanerturan.github.io/anagramator/)
 
-[![The Anagramator editor with its live preview animating](assets/anagramator-demo.gif)](https://okturan.github.io/anagramator/)
+[![The Anagramator editor with its live preview animating](assets/anagramator-demo.gif)](https://okanerturan.github.io/anagramator/)
 
 ## What it does
 
